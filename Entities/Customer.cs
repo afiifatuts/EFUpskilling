@@ -8,8 +8,7 @@ public class Customer
 {
     [Key]
     [Column(name: "id")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [Column(name: "customer_name", TypeName = "varchar(50)")]
     public string CustomerName { get; set; }

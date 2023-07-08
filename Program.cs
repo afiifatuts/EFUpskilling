@@ -28,7 +28,20 @@ namespace EFUpskilling
 
             */
 
-            using AppDbContext context = new();
+            AppDbContext context = new();
+            IRepository<Customer> repository = new Repository<Customer>(context);
+            Customer rio = new()
+            {
+                CustomerName = "Rio",
+                Address = "Trenggalek",
+                MobilePhone = "08445323",
+                Email = "Rio@gmail.com",
+            };
+            //repository.Save(rio);
+            //var customer = repository.FindById(Guid.Parse("eaabb66e-3ef1-4e4d-ad78-27561367b697"));
+            var customer = repository.FindBy(c => c.CustomerName.Equals("Rio"));
+            System.Console.WriteLine(customer.CustomerName);
+
 
             /*
             INSERT
