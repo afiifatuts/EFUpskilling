@@ -1,5 +1,8 @@
 ﻿using EFUpskilling.Repositories;
 using EFUpskilling.Entities;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
 namespace EFUpskilling
 {
     class Program
@@ -26,7 +29,10 @@ namespace EFUpskilling
             */
 
             using AppDbContext context = new();
-            /*Customer customer = new()
+
+            /*
+            INSERT
+            Customer customer = new()
             {
                 Id = 1,
                 CustomerName = "Budi",
@@ -36,7 +42,67 @@ namespace EFUpskilling
             };
             context.Customers.Add(customer);
             context.SaveChanges();
-            */ 
+            */
+
+            /* 
+            SELECT ONE
+            var customer = context.Customers.FirstOrDefault(c => c.Id.Equals(1));
+             System.Console.WriteLine($"Customer: ID: {customer.Id},  Name: {customer.CustomerName}, " +
+                                         $" MobilePhone: {customer.MobilePhone},  Email: {customer.Email}");
+             System.Console.WriteLine(context.Entry(customer).State);
+             System.Console.WriteLine(context.Customers.ToQueryString()); //<- query select
+            */
+
+            /* 
+           SELECT Kondisi
+            var customer = context.Customers.FirstOrDefault(c => c.CustomerName.ToLower().Equals("udin".ToLower()));
+            System.Console.WriteLine($"Customer: ID: {customer.Id},  Name: {customer.CustomerName}, " +
+                                        $" MobilePhone: {customer.MobilePhone},  Email: {customer.Email}");
+           */
+
+
+            /* 
+            SELECT ALL
+            var customers = context.Customers.ToList();
+            foreach (var c in customers)
+            {
+                System.Console.WriteLine($"Customer: ID: {c.Id},  Name: {c.CustomerName}, " +
+                                            $" MobilePhone: {c.MobilePhone},  Email: {c.Email}");
+            }
+            */
+
+            /* 
+           Update
+            var customer = context.Customers.FirstOrDefault(c => c.CustomerName.ToLower().Equals("udin".ToLower()));
+            // System.Console.WriteLine($"Customer: ID: {customer.Id},  Name: {customer.CustomerName}, " +
+            //                             $" MobilePhone: {customer.MobilePhone},  Email: {customer.Email}");
+            Customer udin = new Customer
+            {
+                Id = 2,
+                CustomerName = "udin",
+                Address = "Tulungagung",
+                MobilePhone = "08656356253",
+                Email = "udin@gmail.com",
+            };
+            //customer.CustomerName = "andik";
+            context.Customers.Update(udin);
+            context.SaveChanges();            
+            */
+
+            /* 
+       DELETE
+            var customer = context.Customers.FirstOrDefault(c => c.CustomerName.ToLower().Equals("udin".ToLower()));
+            var customers = context.Customers.ToList();
+            foreach (var c in customers)
+            {
+                System.Console.WriteLine($"Customer: ID: {c.Id},  Name: {c.CustomerName}, " +
+                                            $" MobilePhone: {c.MobilePhone},  Email: {c.Email}");
+            }
+            //customer.CustomerName = "andik";
+            context.Customers.Remove(customer);
+            context.SaveChanges();  
+        */
+
 
         }
     }
