@@ -30,6 +30,7 @@ namespace EFUpskilling
 
             AppDbContext context = new();
             IRepository<Customer> repository = new Repository<Customer>(context);
+            IRepository<Product> productRepo = new Repository<Product>(context);
             Customer rio = new()
             {
                 CustomerName = "Rio",
@@ -42,6 +43,11 @@ namespace EFUpskilling
             var customer = repository.FindBy(c => c.CustomerName.Equals("Rio"));
             System.Console.WriteLine(customer.CustomerName);
 
+
+
+        }
+    }
+}
 
             /*
             INSERT
@@ -116,7 +122,3 @@ namespace EFUpskilling
             context.SaveChanges();  
         */
 
-
-        }
-    }
-}
