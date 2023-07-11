@@ -12,7 +12,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     public TEntity Save(TEntity entity)
     {
         var entry = _appDbContext.Set<TEntity>().Add(entity);
-        _appDbContext.SaveChanges();
         return entry.Entity;
 
     }
@@ -39,11 +38,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     public void Update(TEntity entity)
     {
         _appDbContext.Set<TEntity>().Update(entity);
-        _appDbContext.SaveChanges();
+
     }
     public void Delete(TEntity entity)
     {
         _appDbContext.Set<TEntity>().Remove(entity);
-        _appDbContext.SaveChanges();
+
     }
 }
